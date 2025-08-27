@@ -1,0 +1,76 @@
+<html>
+  <head>
+    Chat Styling Preview
+  </head>
+  <body style="background-color: black">
+    <div
+      style="
+        background-image: url('./bg.jpg');
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+      "
+    >
+      <div
+        id="messagebox"
+        style="
+          display: flex;
+          flex-direction: column;
+          margin-left: 4rem;
+          margin-top: 4rem;
+        "
+      ></div>
+    </div>
+    <style lang="css">
+      .message {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        font-weight: 500;
+      }
+    </style>
+    <script lang="javascript">
+      fetch('./Color.cs', { cache: "no-store"})
+      .then(response => response.text())
+      .then(content => {
+          const colorMap = parseConstants(content, /public\s+static\s+string\s+(\w+)\s*=\s*"([^"]+)"/g);
+          renderMessages(colorMap);
+      }).catch(x=>alert("Couldn't load ./Color.cs\n" + x));
+
+      function parseConstants(content, regex) {
+            const map = {};
+            let match;
+
+            while ((match = regex.exec(content)) !== null) {
+                const name = match[1];
+                const value = match[2];
+                map[name] = value;
+            }
+
+            return map;
+        }
+        function renderMessages(colorMap) {
+          const messagebox = document.getElementById("messagebox");
+
+          for (const [colorName, colorValue] of Object.entries(colorMap)) {
+              const container = document.createElement("div");
+              const system_prefix = document.createElement("span");
+              const text = document.createElement("span");
+
+              system_prefix.innerHTML = "[11:51] [SYSTEM] ";
+              system_prefix.style.color = "#e82";
+
+              text.innerHTML = `Colored with ${colorName} | ${colorValue}`;
+              text.style.color = colorValue;
+
+              system_prefix.classList.add("message");
+              text.classList.add("message");
+              container.append(system_prefix, text);
+              messagebox.appendChild(container);
+          }
+        }
+    </script>
+  </body>
+</html>

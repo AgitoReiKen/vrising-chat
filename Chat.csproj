@@ -1,0 +1,537 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Chat things for vrising</Description>
+    <RootNamespace>Chat</RootNamespace>
+    <PackageId>Chat</PackageId>
+    <BepInExPluginGuid>com.agitoreiken.chat</BepInExPluginGuid>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
+    
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion> 
+    <RestoreSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json;
+    </RestoreSources>
+    <DebugType>Portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Core" Version="6.0.0-pre.1" IncludeAssets="compile" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.1.0" />
+    <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.735" /> 
+    <PackageReference Include="F23.StringSimilarity" Version="6.0.0" /> 
+  </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /Y /F &quot;$(TargetPath)&quot; &quot;F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\plugins\$(BepInExPluginGuid)\&quot;" />
+  </Target>
+  <ItemGroup> 
+    <Reference Include="Backtrace.Unity">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Backtrace.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="com.rlabrecque.steamworks.net">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\com.rlabrecque.steamworks.net.dll</HintPath>
+    </Reference>
+    <Reference Include="com.stunlock.network.eos">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\com.stunlock.network.eos.dll</HintPath>
+    </Reference>
+    <Reference Include="com.stunlock.platform">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\com.stunlock.platform.dll</HintPath>
+    </Reference>
+    <Reference Include="com.stunlock.platform.pc">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\com.stunlock.platform.pc.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppMono.Security">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Il2CppMono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Il2Cppmscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Il2CppSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Configuration">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Il2CppSystem.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Core">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Il2CppSystem.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Data">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Il2CppSystem.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Drawing">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Il2CppSystem.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Net.Http">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Il2CppSystem.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Numerics">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Il2CppSystem.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Runtime.CompilerServices.Unsafe">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Il2CppSystem.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Runtime.Serialization">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Il2CppSystem.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Xml">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Il2CppSystem.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Xml.Linq">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Il2CppSystem.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Lidgren.Network">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="MagicaCloth">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\MagicaCloth.dll</HintPath>
+    </Reference>
+    <Reference Include="Malee.ReorderableList">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Malee.ReorderableList.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Behaviours">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Behaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Camera">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Camera.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.CastleBuilding.Systems">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.CastleBuilding.Systems.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.CastleDyeSystem">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.CastleDyeSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.CodeGeneration">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.CodeGeneration.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Conversion">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Conversion.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.DualsensePC">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.DualsensePC.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Editor.SampleHandler">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Editor.SampleHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Gameplay.Scripting">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Gameplay.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Gameplay.Systems">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Gameplay.Systems.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.GeneratedNetCode">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.GeneratedNetCode.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Haptics">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Haptics.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.HUD">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.HUD.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Hybrid.Performance">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Hybrid.Performance.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.LiveBuildPerformanceTests.GlowingVampire">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.LiveBuildPerformanceTests.GlowingVampire.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.LiveBuildPerformanceTests.Utilities">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.LiveBuildPerformanceTests.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Misc.Systems">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Misc.Systems.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Pathfinding">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Pathfinding.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.PerformanceTests.Editor">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.PerformanceTests.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Presentation.Systems">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Presentation.Systems.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Roofs">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Roofs.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.ScriptableSystems">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.ScriptableSystems.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Shared">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Shared.ColorData">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Shared.ColorData.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Shared.Systems">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Shared.Systems.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Steam">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Steam.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Terrain">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Terrain.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.VFXRendererUtility">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.VFXRendererUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectM.Wind.Shared">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\ProjectM.Wind.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="RCONServerLib">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\RCONServerLib.dll</HintPath>
+    </Reference>
+    <Reference Include="RootMotion">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\RootMotion.dll</HintPath>
+    </Reference>
+    <Reference Include="RTLTMPro">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\RTLTMPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Sequencer">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Sequencer.dll</HintPath>
+    </Reference>
+    <Reference Include="Stunlock.Animation.StunCloth.Runtime">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Stunlock.Animation.StunCloth.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Stunlock.Console">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Stunlock.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="Stunlock.ContentTests">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Stunlock.ContentTests.dll</HintPath>
+    </Reference>
+    <Reference Include="Stunlock.Core">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Stunlock.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Stunlock.Core.Animation">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Stunlock.Core.Animation.dll</HintPath>
+    </Reference>
+    <Reference Include="Stunlock.Fmod">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Stunlock.Fmod.dll</HintPath>
+    </Reference>
+    <Reference Include="Stunlock.Localization">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Stunlock.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Stunlock.Metrics">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Stunlock.Metrics.dll</HintPath>
+    </Reference>
+    <Reference Include="Stunlock.Network">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Stunlock.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="Stunlock.Network.EosSdk">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Stunlock.Network.EosSdk.dll</HintPath>
+    </Reference>
+    <Reference Include="Stunlock.Network.Lidgren">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Stunlock.Network.Lidgren.dll</HintPath>
+    </Reference>
+    <Reference Include="Stunlock.Network.Steam">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Stunlock.Network.Steam.dll</HintPath>
+    </Reference>
+    <Reference Include="Stunlock.Tools">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Stunlock.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Burst.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Unsafe">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections.LowLevel.ILSupport">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Deformations">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Deformations.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Entities">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Entities.Graphics">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Entities.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Entities.Hybrid">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Entities.Hybrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Entities.Hybrid.HybridComponents">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Entities.Hybrid.HybridComponents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.InputSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem.ForUI">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.InputSystem.ForUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Extensions">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Mathematics.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Extensions.Hybrid">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Mathematics.Extensions.Hybrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.MemoryProfiler">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.MemoryProfiler.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Physics">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Physics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Physics.Hybrid">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Physics.Hybrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Profiling.Core">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Profiling.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Scenes">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Scenes.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Serialization">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Transforms">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Transforms.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Transforms.Hybrid">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.Transforms.Hybrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualEffectGraph.Runtime">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\Unity.VisualEffectGraph.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.AndroidJNIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ContentLoadModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.ContentLoadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.DSPGraphModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GIModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.GIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PropertiesModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.PropertiesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.SubsystemsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreFontEngineModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreTextEngineModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityCurlModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.UnityCurlModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.VFXModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VirtualTexturingModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.VirtualTexturingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="VivoxUnity">
+      <HintPath>F:\SteamLibrary\steamapps\common\VRisingDedicatedServer\BepInEx\interop_src\VivoxUnity.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Html\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Html\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Html\**" />
+  </ItemGroup>
+</Project>
